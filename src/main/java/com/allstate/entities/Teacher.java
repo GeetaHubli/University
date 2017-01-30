@@ -8,6 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
@@ -60,6 +62,8 @@ public class Teacher {
     }
 
     @NotNull
+    @Min(value = 19)
+    @Max(value = 65)
     public int getAge() {
         return age;
     }

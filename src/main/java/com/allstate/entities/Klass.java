@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -92,6 +93,7 @@ public class Klass {
         this.department = department;
     }
 
+    @DecimalMin(value = "0")
     @NotNull
     public Double getFee() {
         return fee;
