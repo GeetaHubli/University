@@ -23,14 +23,6 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @Sql(value = {"/sql/seed.sql"})
 public class TeacherServiceTest {
-
-    private ITeacherRepository teacherRepository;
-
-    @Autowired
-    public  void setStudentRepository(ITeacherRepository teacherRepository){
-        this.teacherRepository = teacherRepository;
-    }
-
     @Autowired
     private TeacherService teacherService;
 
@@ -44,34 +36,34 @@ public class TeacherServiceTest {
 
     @Test
     public void shouldCreateTeacher() throws Exception {
-        Teacher result = this.teacherRepository.save(new Teacher("chyld", 25, Gender.M));
+        Teacher result = this.teacherService.create(new Teacher("chyld", 25, Gender.M));
         assertEquals(4, result.getId());
     }
 
     @Test
     public void shouldFindTeacherById() throws Exception {
-        Teacher result = this.teacherRepository.findOne(2);
+        Teacher result = this.teacherService.findById(2);
         assertEquals(2, result.getId());
         assertEquals("teacher2", result.getName());
     }
 
     @Test
     public void shouldFindTeacherByName() throws Exception {
-        Teacher result = this.teacherRepository.findByName("teacher2");
+        Teacher result = this.teacherService.findByName("teacher2");
         assertEquals(2, result.getId());
         assertEquals("teacher2", result.getName());
     }
 
     @Test
     public void shouldFindTeachersByGender() throws Exception {
-        Iterable<Teacher> teacherList = this.teacherRepository.findByGender(Gender.F);
+        Iterable<Teacher> teacherList = this.teacherService.findByGender(Gender.F);
         List<Teacher> list = (List<Teacher>) teacherList;
         assertEquals(2, list.size());
     }
 
     @Test
     public void shouldFindTeachersOlderThenAge() throws Exception {
-        Iterable<Teacher> teacherList = this.teacherRepository.findByAgeGreaterThan(25);
+        Iterable<Teacher> teacherList = this.teacherService.findByAgeGreaterThan(25);
         List<Teacher> list = (List<Teacher>) teacherList;
         assertEquals(2, list.size());
     }
@@ -79,8 +71,8 @@ public class TeacherServiceTest {
     @Test
     @Transactional
     public void shouldFindAllTheKlassesTaughtByTeacher() throws Exception {
-        List<Klass> klasses = this.teacherService.findById(2).getKlasses();
-        assertEquals(2, klasses.size());
+        List<Klass> klasses = this.teacherService.findById(1).getKlasses();
+        assertEquals(1, klasses.size());
     }
 
     @Test
