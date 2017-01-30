@@ -12,6 +12,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="klasses")
@@ -100,7 +101,7 @@ public class Klass {
     }
 
     @ManyToOne
-    @JoinColumn(name="teacherId")
+    @JoinColumn(name="teacher_id")
     @JsonIgnore
     public Teacher getTeacher() {
         return teacher;

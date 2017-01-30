@@ -75,12 +75,12 @@ public class Teacher {
         this.gender = gender;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "klasses")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     @JsonIgnore
-    public List<Klass> getKlass() {
+    public List<Klass> getKlasses() {
         return klasses;
     }
-    public void setKlass(List<Klass> klasses) {
+    public void setKlasses(List<Klass> klasses) {
         this.klasses = klasses;
     }
 

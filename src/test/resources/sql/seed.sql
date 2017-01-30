@@ -18,7 +18,7 @@ VALUES
   ('teacher2' , 45, 'F'),
   ('teacher3' , 28, 'F');
 
-INSERT INTO `klasses` (`name`,`semester`,`credits`,`department`,`fee`, `teacherId`)
+INSERT INTO `klasses` (`name`,`semester`,`credits`,`department`,`fee`, `teacher_id`)
 VALUES
   ('test1', SYSDATE(), 1, 'SCIENCE', 20, 1),
   ('test2', SYSDATE(), 2, 'ENGINEERING', 30, 2),
