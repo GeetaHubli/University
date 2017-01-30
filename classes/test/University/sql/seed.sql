@@ -18,6 +18,6 @@ VALUES
 
 INSERT INTO `teachers` (`name` ,`age`,`gender`)
 VALUES
-  ('teacher1' , 30, 'M'),
+  ('teacher1' , 20, 'M'),
   ('teacher2' , 45, 'F'),
   ('teacher3' , 28, 'F');

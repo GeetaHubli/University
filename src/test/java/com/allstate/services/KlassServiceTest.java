@@ -1,6 +1,7 @@
 package com.allstate.services;
 
 import com.allstate.entities.Klass;
+import com.allstate.entities.Teacher;
 import com.allstate.enums.Departments;
 import org.junit.After;
 import org.junit.Before;
@@ -25,6 +26,9 @@ public class KlassServiceTest {
     @Autowired
     private KlassService klassService;
 
+    @Autowired
+    private TeacherService teacherService;
+
     @Before
     public void setUp() throws Exception {
     }
@@ -36,7 +40,8 @@ public class KlassServiceTest {
     @Test
     public void shouldCreateKlass() throws Exception {
         Date date = new Date();
-        Klass klass = new Klass("Compozed", new Timestamp(date.getTime()), 5, Departments.ENGINEERING, 20.0);
+        Teacher teacher = teacherService.findById(1);
+        Klass klass = new Klass("Compozed", new Timestamp(date.getTime()), 5, Departments.ENGINEERING, 20.0, teacher);
         Klass result = klassService.create(klass);
         assertEquals(4, result.getId());
     }

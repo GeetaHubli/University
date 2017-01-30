@@ -2,6 +2,7 @@ package com.allstate.entities;
 
 
 import com.allstate.enums.Departments;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,18 +24,21 @@ public class Klass {
     private int credits;
     private Departments department;
     private double fee;
+    private Teacher teacher;
     private Date created;
     private Date modified;
 
     public Klass() {
     }
 
-    public Klass(String name, Date semester, int credits, Departments department, double fee) {
+    public Klass(String name, Date semester, int credits, Departments department, double fee, Teacher teacher) {
         this.name = name;
         this.semester = semester;
         this.credits = credits;
         this.department = department;
         this.fee = fee;
+        this.teacher = teacher;
+        this.teacher.setId(teacher.getId());
     }
 
     @Id
@@ -96,6 +100,16 @@ public class Klass {
         this.fee = fee;
     }
 
+    @ManyToOne
+    @JoinColumn(name="teacherId")
+    @JsonIgnore
+    public Teacher getTeacher() {
+        return teacher;
+    }
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     @CreationTimestamp
     public Date getCreated() {
         return created;
@@ -111,6 +125,4 @@ public class Klass {
     public void setModified(Date modified) {
         this.modified = modified;
     }
-
-
 }

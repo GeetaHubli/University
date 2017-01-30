@@ -6,6 +6,12 @@ CREATE TABLE `klasses` (
   `credits`    INT            NOT NULL DEFAULT 1,
   `department` ENUM('SCIENCE', 'ENGINEERING', 'LITERATURE', 'PHILOSOPHY') NOT NULL,
   `fee`        DECIMAL(12, 2) NOT NULL,
+  `teacherId`  INT            NOT NULL,
   `created`    TIMESTAMP      NOT NULL  DEFAULT NOW(),
   `modified`   TIMESTAMP      NOT NULL  DEFAULT NOW(),
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_teacher_id`
+  FOREIGN KEY (`teacher_id`)
+  REFERENCES `teachers` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION)
