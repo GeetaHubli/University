@@ -29,6 +29,8 @@ public class Klass {
     private Teacher teacher;
     private Date created;
     private Date modified;
+    private List<Grade> grades;
+    private List<Student> students;
 
     public Klass() {
     }
@@ -110,6 +112,24 @@ public class Klass {
     }
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    @OneToMany(mappedBy = "klass")
+    @JsonIgnore
+    public List<Grade> getGrades() {
+        return grades;
+    }
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
+    }
+
+    @ManyToMany(mappedBy="klasses")
+    @JsonIgnore
+    public List<Student> getStudents() {
+        return students;
+    }
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     @CreationTimestamp

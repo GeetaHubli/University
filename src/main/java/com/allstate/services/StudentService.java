@@ -6,6 +6,8 @@ import org.omg.CosNaming._BindingIteratorStub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
     private IStudentRepository studentRepository;
@@ -26,5 +28,9 @@ public class StudentService {
 
     public Student findByEmail(String email) {
         return this.studentRepository.findByEmail(email);
+    }
+
+    public Iterable<Student> saveAll(List<Student> students){
+        return this.studentRepository.save(students);
     }
 }
