@@ -38,7 +38,6 @@ public class Klass {
         this.department = department;
         this.fee = fee;
         this.teacher = teacher;
-        this.teacher.setId(teacher.getId());
     }
 
     @Id

@@ -11,7 +11,7 @@ CREATE TABLE `klasses` (
   `modified`   TIMESTAMP      NOT NULL  DEFAULT NOW(),
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_teacher_id`
-  FOREIGN KEY (`teacher_id`)
+  FOREIGN KEY (`teacherId`)
   REFERENCES `teachers` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION)

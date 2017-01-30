@@ -1,8 +1,10 @@
 USE university_test;
 
+set FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE students;
 TRUNCATE TABLE klasses;
 TRUNCATE TABLE teachers;
+set FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO `students` (`email`)
 VALUES
@@ -10,14 +12,16 @@ VALUES
   ('test2@gmail.com'),
   ('test3@gmail.com');
 
-INSERT INTO `klasses` (`name`,`semester`,`credits`,`department`,`fee`)
-VALUES
-  ('test1', SYSDATE(), 1, 'SCIENCE', 20),
-  ('test2', SYSDATE(), 2, 'ENGINEERING', 30),
-  ('test3', SYSDATE(), 3, 'PHILOSOPHY', 40);
-
 INSERT INTO `teachers` (`name` ,`age`,`gender`)
 VALUES
   ('teacher1' , 20, 'M'),
   ('teacher2' , 45, 'F'),
   ('teacher3' , 28, 'F');
+
+INSERT INTO `klasses` (`name`,`semester`,`credits`,`department`,`fee`, `teacherId`)
+VALUES
+  ('test1', SYSDATE(), 1, 'SCIENCE', 20, 1),
+  ('test2', SYSDATE(), 2, 'ENGINEERING', 30, 2),
+  ('test3', SYSDATE(), 3, 'PHILOSOPHY', 40, 3);
+
+
