@@ -1,5 +1,6 @@
 package com.allstate.services;
 
+import com.allstate.entities.Klass;
 import com.allstate.entities.Teacher;
 import com.allstate.enums.Gender;
 import com.allstate.respositories.ITeacherRepository;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +30,10 @@ public class TeacherServiceTest {
     public  void setStudentRepository(ITeacherRepository teacherRepository){
         this.teacherRepository = teacherRepository;
     }
+
+    @Autowired
+    private TeacherService teacherService;
+
     @Before
     public void setUp() throws Exception {
     }
@@ -68,5 +74,19 @@ public class TeacherServiceTest {
         Iterable<Teacher> teacherList = this.teacherRepository.findByAgeGreaterThan(25);
         List<Teacher> list = (List<Teacher>) teacherList;
         assertEquals(2, list.size());
+    }
+
+    @Test
+    @Transactional
+    public void shouldFindAllTheKlassesTaughtByTeacher() throws Exception {
+        List<Klass> klasses = this.teacherService.findById(2).getKlasses();
+        assertEquals(2, klasses.size());
+    }
+
+    @Test
+    @Transactional
+    public void shouldFindNoKlassesTaughtByTeacher() throws Exception {
+        List<Klass> klasses = this.teacherService.findById(3).getKlasses();
+        assertEquals(0, klasses.size());
     }
 }

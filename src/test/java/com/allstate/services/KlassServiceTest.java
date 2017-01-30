@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -38,6 +39,7 @@ public class KlassServiceTest {
     }
 
     @Test
+    @Transactional
     public void shouldCreateKlass() throws Exception {
         Date date = new Date();
         Teacher teacher = teacherService.findById(1);
@@ -58,5 +60,17 @@ public class KlassServiceTest {
         Klass klass = klassService.findByName("test2");
         assertEquals(2, klass.getId());
         assertEquals("test2", klass.getName());
+    }
+
+    @Test
+    public void shouldFindOneKlassByName() throws Exception {
+        Klass klass = this.klassService.findByName("test1");
+        assertEquals(1, klass.getId());
+    }
+
+    @Test
+    public void shouldFindTheTeacherFromKlass() throws Exception {
+        Klass klass = this.klassService.findByName("test1");
+        assertEquals("teacher1", klass.getTeacher().getName());
     }
 }

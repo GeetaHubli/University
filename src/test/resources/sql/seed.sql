@@ -22,6 +22,6 @@ INSERT INTO `klasses` (`name`,`semester`,`credits`,`department`,`fee`, `teacher_
 VALUES
   ('test1', SYSDATE(), 1, 'SCIENCE', 20, 1),
   ('test2', SYSDATE(), 2, 'ENGINEERING', 30, 2),
-  ('test3', SYSDATE(), 3, 'PHILOSOPHY', 40, 3);
+  ('test3', SYSDATE(), 3, 'PHILOSOPHY', 40, 2);
 
 

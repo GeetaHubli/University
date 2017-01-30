@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -75,7 +76,7 @@ public class Teacher {
         this.gender = gender;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.EAGER)
     @JsonIgnore
     public List<Klass> getKlasses() {
         return klasses;
