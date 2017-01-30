@@ -64,7 +64,7 @@ public class TeacherServiceTest {
 
     @Test
     public void shouldFindTeachersByGender() throws Exception {
-        Iterable<Teacher> teacherList = this.teacherRepository.findByGenderIs(Gender.F);
+        Iterable<Teacher> teacherList = this.teacherRepository.findByGender(Gender.F);
         List<Teacher> list = (List<Teacher>) teacherList;
         assertEquals(2, list.size());
     }
